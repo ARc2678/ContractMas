@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name = "user" extends = "struts-default" namespace="/">
+        <!--找不着这些jsp的合适的路径，就先让他们红着吧(唉-->
+        <action name = "login"
+                class = "main.contract.action.LoginAction">
+            <result name = "input">/login.jsp</result>
+            <!--不变，因为没有成功登陆-->
+            <result name = "successUser">/userMain.jsp</result>
+            <!--普通用户成功登陆-->
+            <result name = "successAdmin">/adminMain.jsp</result>
+            <!--管理员成功登陆-->
+            <result name = "firstSuccess">/infoInit.jsp</result>
+            <!--普通用户初次登陆，提交个人信息界面-->
+
+        </action>
+
+        <action name = "Fsubmitinfo"
+                class = "main.contract.action.commitinfoModification">
+            <!--没提交成功，信息格式有误的时候就在action里面addfielderror-->
+            <result name = "success">/contractSelect.jsp</result>
+            <!--信息提交成功，-->
+        </action>
+
+        <action name = "selectcategory"
+                class = "main.contract.action.selectcontractAction">
+            <result name = "laborservice">/laborService.jsp</result>
+            <!--劳务协议-->
+            <result name = "laborcontract">/laborContract.jsp</result>
+            <!--劳动合同-->
+            <result name = "employcontract">/employContract.jsp</result>
+            <!--聘用合同-->
+        </action>
+
+        <action name = "commitcontract"
+                class = "main.contract.action.commitcontractModification">
+            <!--没提交成功，信息格式有误的时候就在action里面addfielderror-->
+            <result name = "success">/userMain.jsp</result>
+            <!--初次提交合同成功，进入普通用户主页-->
+        </action>
+
+        <action name = "modifyinfo"
+                class = "main.contract.action.commitinfoModification">
+            <!--没提交成功，信息格式有误的时候就在action里面addfielderror-->
+            <result name = "success">/submitSuccess.jsp</result>
+            <!--提交个人信息修改请求成功，进入提交成功页面，5秒后进入普通用户主页-->
+        </action>
+
+        <action name = "modifycontract"
+                class = "main.contract.action.commitcontractModification">
+            <!--没提交成功，信息格式有误的时候就在action里面addfielderror-->
+            <result name = "success">/submitSuccess.jsp</result>
+            <!--提交合同信息修改请求成功，进入提交成功页面，5秒后进入普通用户主页-->
+        </action>
+
+        <action name = "loginout"
+                class = "main.contract.action.LogoutAction">
+            <result name = "success">/login.jsp</result>
+            <!--成功登出，进入登录界面-->
+        </action>
+    </package>
+</struts>
